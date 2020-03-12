@@ -1,5 +1,6 @@
 import web
-
+from Models import RegisterModel
+import bcrypt
 
 urls = (
     '/', 'Home',
@@ -20,7 +21,10 @@ class Register:
     
     def POST(self):
         data = web.input()
-        return data
+        registration = RegisterModel.RegisterModel()
+        hashed_password = bcrypt.hashpw(data.password.encode(), bcrypt.gensalt())
+        _id = registration.insert_user(data.username, hashed_password)
+        return _id
 
 if __name__ == "__main__":
     app.run()
