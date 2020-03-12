@@ -12,4 +12,17 @@ $(document).ready(function() {
             }
         })
     })
+
+    $(document).on('submit', '#login', function(e) {
+        e.preventDefault();
+        let form = $("#login").serialize()
+        $.ajax({
+            url: '/login',
+            type: 'POST',
+            data: form,
+            success: function(response) {
+                console.log(response)
+            }
+        })
+    })    
 })
