@@ -1,1 +1,7 @@
-<h1>Welcome to Python World :)</h1>
+
+<div class="container">
+    $if session['user'] == None:
+        <h1>Hello folks</h1>
+    $else:
+        <h1>Hello $session['user']['fullname']</h1>
+</div>

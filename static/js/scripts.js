@@ -21,8 +21,27 @@ $(document).ready(function() {
             type: 'POST',
             data: form,
             success: function(response) {
-                console.log(response)
+                if (response === 'error') {
+                    alert('Cant login!')
+                } else {
+                    window.location.href = '/'
+                }
             }
         })
-    })    
+    })
+    
+    $(document).on('click', '#logout', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/logout',
+            type: 'GET',
+            success: function(response){
+                if (response === 'success'){
+                    window.location.href = '/login'
+                } else {
+                    alert('Something went wrong!')
+                }
+            }
+        })
+    })
 })

@@ -2,14 +2,21 @@ import web
 from Models import UserModel
 import bcrypt
 
+web.config.debug = False
+
 urls = (
     '/', 'Home',
     '/register', 'Register',
-    '/login', 'Login'
+    '/login', 'Login',
+    '/logout', 'Logout'
 )
 
-render = web.template.render('Views/Templates/', base="MainLayout")
 app = web.application(urls, globals())
+session = web.session.Session(app, web.session.DiskStore("sessions"), initializer={'user': None})
+session_data = session._initializer
+
+
+render = web.template.render('Views/Templates/', base="MainLayout", globals={'session': session_data, 'currentUser': session_data["user"]})
 
 # Classes / Routes
 class Home:
@@ -36,9 +43,18 @@ class Login:
         user_model = UserModel.UserModel()
         user = user_model.find_user(data.username)
         if user and bcrypt.checkpw(data.password.encode(), user["password"]):
+            session_data["user"] = user
             return user["fullname"]
+
         else:
             return "error"
+
+class Logout:
+    def GET(self):
+        session['user'] = None
+        session_data['user'] = None
+        session.kill()
+        return "success"
 
             
 

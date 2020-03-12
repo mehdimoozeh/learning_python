@@ -24,19 +24,21 @@ $var js: static/js/bootstrap.min.js static/js/jquery-3.4.1.min.js static/js/scri
                     <li class="nav-item active">
                       <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/login">Login</a>
-                    </li>
+                  </ul>
+                  <div>
+                    $if session['user'] == None:
+                      <a class="btn btn-outline-primary my-2 my-sm-0" href="/register">Register</a>
+                      <a class="btn btn-outline-success my-2 my-sm-0" href="/login">Login</a>
+                    $else:
+                      <a id="logout" class="btn btn-outline-danger my-2 my-sm-0" href="/logout">Logout</a>
+                  </div>
                 <!-- <li class="nav-item">
                       <a class="nav-link" href="#">Pricing</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link disabled" href="#">Disabled</a>
                     </li> -->
-                  </ul>
+
                 </div>
               </nav>
         </div>
