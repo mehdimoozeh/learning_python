@@ -1,7 +1,15 @@
 $(document).ready(function() {
-    console.log('loaded');
-    $(document).on('submit', '#register-form', function(e) {
+        $(document).on('submit', '#register_form', function(e) {
         e.preventDefault();
-        console.log('form submitted');
+        let form = $("#register_form").serialize()
+        console.log("form: ", form);
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            data: form,
+            success: function(response){
+                console.log(response);
+            }
+        })
     })
 })
