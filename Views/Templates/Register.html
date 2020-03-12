@@ -1,10 +1,9 @@
 $def with (action)
 
 <div class="container">
-    $if action != "":
-        <div class="alert alert-success" role="alert">
-            User $action created successfully
-        </div>
+    <div id="result" style="visibility: hidden;" class="alert alert-success" role="alert">
+        User created successfully
+    </div>
 
     <h4>Register account:</h4>
     <br>
