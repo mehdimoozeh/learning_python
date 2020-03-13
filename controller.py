@@ -1,5 +1,5 @@
 import web
-from Models import UserModel
+from Models import UserModel, PostModel
 import bcrypt
 
 web.config.debug = False
@@ -8,7 +8,8 @@ urls = (
     '/', 'Home',
     '/register', 'Register',
     '/login', 'Login',
-    '/logout', 'Logout'
+    '/logout', 'Logout',
+    '/post', 'Post'
 )
 
 app = web.application(urls, globals())
@@ -55,6 +56,20 @@ class Logout:
         session_data['user'] = None
         session.kill()
         return "success"
+
+class Post:
+    def POST(self):
+        data = web.input()
+        user = session_data['user']['username']
+
+        post_model = PostModel.PostModel()
+        _id = post_model.insert_post(user, data["post-text"])
+        if _id:
+            return _id
+        else:
+            return 'error'
+
+
 
             
 

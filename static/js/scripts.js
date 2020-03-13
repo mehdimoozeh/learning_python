@@ -31,6 +31,7 @@ $(document).ready(function() {
     })
     
     $(document).on('click', '#logout', function(e) {
+        console.log('here...')
         e.preventDefault();
         $.ajax({
             url: '/logout',
@@ -44,4 +45,22 @@ $(document).ready(function() {
             }
         })
     })
+
+    $(document).on('submit', '#post_form', function(e) {
+        e.preventDefault();
+        let form = $("#post_form").serialize()
+        $.ajax({
+            url: '/post',
+            type: 'POST',
+            data: form,
+            success: function(response){
+                if (response === 'error'){
+                    alert('Cant post right now!')
+                } else {
+                    console.log(response)
+                }
+            }
+        })
+    })
+
 })
