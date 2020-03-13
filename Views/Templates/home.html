@@ -4,4 +4,40 @@
         <h1>Hello folks</h1>
     $else:
         <h1>Hello $session['user']['fullname']</h1>
+        <br />
+        <div class="row">
+            <div class="col-5">
+                <form>
+                    <div class="form-group">
+                        <div style="position: relative;">
+                            <textarea placeholder="How you doin today?" class="form-control" id="post-text" rows="5"></textarea>
+                            <button style="bottom: 5px; right: 5px; position: absolute" class="btn btn-primary" type="submit">Post</button>
+                        </div>
+                      </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-header">
+                    Post Date
+                    </div>
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-header">
+                    Post Date
+                    </div>
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
