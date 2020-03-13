@@ -13,5 +13,9 @@ class PostModel:
         return _id
 
     def find_user_posts(self, user):
-        data = self.Posts.find({"user": user})
-        return data
+        data = self.Posts.find({"user": user}, {"password": 0})
+        posts = []
+        for post in data:
+            posts.append(post)
+    
+        return posts

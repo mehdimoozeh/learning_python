@@ -1,3 +1,4 @@
+$def with (posts)
 
 <div class="container">
     $if session['user'] == None:
@@ -17,27 +18,17 @@
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col-5">
-                <div class="card">
-                    <div class="card-header">
-                    Post Date
-                    </div>
-                    <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-5">
-                <div class="card">
-                    <div class="card-header">
-                    Post Date
-                    </div>
-                    <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        $for post in posts:
+            <div class="row">
+                <div class="col-5">
+                    <div class="card">
+                        <div class="card-header">
+                            $post['createdAt']
+                        </div>
+                        <div class="card-body">
+                            <p>$post['text']</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 </div>

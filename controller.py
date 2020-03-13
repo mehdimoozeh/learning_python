@@ -22,7 +22,11 @@ render = web.template.render('Views/Templates/', base="MainLayout", globals={'se
 # Classes / Routes
 class Home:
     def GET(self):
-        return render.Home()
+        post_model = PostModel.PostModel()
+        posts = []
+        if session_data['user'] != None:
+            posts = post_model.find_user_posts(session_data['user']['username'])
+        return render.Home(posts)
 
 class Register:
     def GET(self):
@@ -46,7 +50,6 @@ class Login:
         if user and bcrypt.checkpw(data.password.encode(), user["password"]):
             session_data["user"] = user
             return user["fullname"]
-
         else:
             return "error"
 
